@@ -9,7 +9,7 @@ pipeline{
                     ls -lah
                 '''
                 withAWS(region:'eu-west-2',credentials:'aws-static'){
-                    s3Upload(file:'index.html', bucket:'adeel-jenkins-static', path:'index.html')
+                    s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'adeel-jenkins-static')
                 }
             }
         }
