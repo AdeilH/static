@@ -1,6 +1,9 @@
 pipeline{
     agent any
     stages{
+        stage('lint'){
+            sh 'tidy -q -e *.html'
+        }
         stage('Upload to AWS'){
             steps{
                 sh 'echo "Hello World"'
