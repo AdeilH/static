@@ -1,13 +1,16 @@
 pipeline{
     agent any
     stages{
-        stage('Build'){
+        stage('Upload to AWS'){
             steps{
                 sh 'echo "Hello World"'
                 sh '''
                     echo "Multilineshell steps work too"
                     ls -lah
                 '''
+                withAWS(region:'eu-west-2', credentials: 'Adeel petrcech') {    // do something
+                    s3Upload(file:'index.html', bucket:'adeel-jenkins-static', path:'index.html')
+                }
             }
         }
     }
